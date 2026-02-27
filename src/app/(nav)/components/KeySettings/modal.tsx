@@ -57,7 +57,7 @@ export default function Settings(props: {
                             配置
                         </ModalHeader>
                         <ModalBody>
-                            <form onSubmit={handleFormSubmit} className="space-y-4">
+                            <form key={isOpen ? 'open' : 'closed'} onSubmit={handleFormSubmit} className="space-y-4">
                                 <Input
                                     autoFocus
                                     label={
@@ -74,7 +74,7 @@ export default function Settings(props: {
                                     placeholder="密钥仅存储在你的本地"
                                     variant="underlined"
                                     name="amapKey"
-                                    value={amapKey.key}
+                                    defaultValue={amapKey.key}
                                 />
                                 <Input
                                     label={
@@ -85,7 +85,7 @@ export default function Settings(props: {
                                     placeholder=""
                                     variant="underlined"
                                     name="amapSecureKey"
-                                    value={amapKey.securityKey}
+                                    defaultValue={amapKey.securityKey}
                                 />
                                 <Input
                                     label={
@@ -102,7 +102,7 @@ export default function Settings(props: {
                                     placeholder="用于驾车未来路径规划（可选）"
                                     variant="underlined"
                                     name="amapWebKey"
-                                    value={amapWebKey}
+                                    defaultValue={amapWebKey}
                                 />
                                 <Input
                                     label={
@@ -119,7 +119,7 @@ export default function Settings(props: {
                                     placeholder="密钥仅存储在你的本地"
                                     variant="underlined"
                                     name="bmapKey"
-                                    value={bmapKey}
+                                    defaultValue={bmapKey}
                                 />
                                 <div className="pt-2 flex justify-end">
                                     <Button color="primary" type="submit">
