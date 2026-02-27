@@ -13,6 +13,7 @@ import { FormEventHandler } from 'react';
 
 interface FormJsonValue extends Record<string, unknown> {
     amapKey?: string;
+    amapWebKey?: string;
     bmapKey?: string;
 }
 
@@ -22,11 +23,13 @@ export default function Settings(props: {
 }) {
     const { isOpen, onClose } = props;
 
-    const { amapKey, bmapKey, setAmapKey, setBmapKey } = useAppStore(
+    const { amapKey, amapWebKey, bmapKey, setAmapKey, setAmapWebKey, setBmapKey } = useAppStore(
         (state) => ({
             amapKey: state.amapKey,
+            amapWebKey: state.amapWebKey,
             bmapKey: state.bmapKey,
             setAmapKey: state.setAmapKey,
+            setAmapWebKey: state.setAmapWebKey,
             setBmapKey: state.setBmapKey,
         }),
     );
@@ -40,6 +43,7 @@ export default function Settings(props: {
             key: formJsonValue.amapKey as string,
             securityKey: formJsonValue.amapSecureKey as string,
         });
+        setAmapWebKey(formJsonValue.amapWebKey as string);
         setBmapKey(formJsonValue.bmapKey as string);
     };
 
@@ -81,6 +85,24 @@ export default function Settings(props: {
                                     variant="underlined"
                                     name="amapSecureKey"
                                     value={amapKey.securityKey}
+                                />
+                                <Input
+                                    className="mt-3"
+                                    label={
+                                        <div>
+                                            <span>高德地图 Web服务 密钥</span>
+                                            <Link
+                                                className="ml-1 text-blue-400"
+                                                href="https://lbs.amap.com/api/webservice/guide/create-project/get-key"
+                                            >
+                                                如何获取？
+                                            </Link>
+                                        </div>
+                                    }
+                                    placeholder="用于驾车未来路径规划（可选）"
+                                    variant="underlined"
+                                    name="amapWebKey"
+                                    value={amapWebKey}
                                 />
                                 <Input
                                     className="mt-3"

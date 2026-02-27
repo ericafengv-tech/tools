@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 高德地图搜索建议 - 暗色模式 */
+.dark .amap-sug-result,
+body.dark-mode .amap-sug-result {
+    background: #18181b !important;
+    border: 1px solid #3f3f46 !important;
+    border-radius: 0 0 12px 12px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark .amap-sug-result .auto-item,
+body.dark-mode .amap-sug-result .auto-item {
+    color: #f4f4f5 !important;
+    background: #18181b !important;
+    padding: 12px 16px !important;
+}
+
+.dark .amap-sug-result .auto-item:hover,
+body.dark-mode .amap-sug-result .auto-item:hover {
+    background: #27272a !important;
+}
+
+.dark .amap-sug-result .auto-item span,
+body.dark-mode .amap-sug-result .auto-item span {
+    color: #a1a1aa !important;
+}
+
+/* 高德地图搜索建议 - 通用样式 */
+.amap-sug-result {
+    z-index: 9999 !important;
+    overflow: hidden !important;
+}

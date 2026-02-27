@@ -1,10 +1,5 @@
-// app/page.tsx
-import {Button} from '@nextui-org/react';
+import { redirect } from 'next/navigation';
 
 export default function Page() {
-  return (
-    <div className='w-full h-full hi'>
-
-    </div>
-  )
+  redirect('/busline');
 }
