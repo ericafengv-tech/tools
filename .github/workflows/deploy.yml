@@ -1,11 +1,4 @@
-# 部署到 GitHub Pages 或 Vercel 的工作流
-# 
-# 使用方法：
-# 1. GitHub Pages: 取消 next.config.js 中 output: 'export' 的注释
-# 2. 在 GitHub 仓库设置中启用 Pages，选择 "GitHub Actions" 作为源
-# 3. 推送代码即可自动部署
-
-name: Deploy
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -32,18 +25,35 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: Build
-        run: npm run build
+        run: pnpm build
         env:
-          NEXT_PUBLIC_BASE_PATH: ${{ github.event.repository.name != github.event.repository.owner.login && format('/{0}', github.event.repository.name) || '' }}
+          NEXT_PUBLIC_BASE_PATH: /tools
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
