@@ -30,8 +30,9 @@ export default function Nav() {
                     <NavbarItem>
                         <Link
                             className="text-2xl bg-white"
-                            href="https://github.com/daibor/bus-route-radiation-map"
-                            target='_blank'
+                            href="https://github.com/ericafengv-tech/tools"
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <GithubIcon />
                         </Link>

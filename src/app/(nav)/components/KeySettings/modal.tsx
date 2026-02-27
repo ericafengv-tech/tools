@@ -34,7 +34,8 @@ export default function Settings(props: {
         }),
     );
 
-    const handleFormChange: FormEventHandler<HTMLFormElement> = (eve) => {
+    const handleFormSubmit: FormEventHandler<HTMLFormElement> = (eve) => {
+        eve.preventDefault();
         const formData = new FormData(eve.currentTarget as HTMLFormElement);
         const formJsonValue: FormJsonValue = {};
         formData.forEach((value, key) => (formJsonValue[key] = value));
@@ -56,7 +57,7 @@ export default function Settings(props: {
                             配置
                         </ModalHeader>
                         <ModalBody>
-                            <form onChange={handleFormChange}>
+                            <form onSubmit={handleFormSubmit} className="space-y-4">
                                 <Input
                                     autoFocus
                                     label={
@@ -87,7 +88,6 @@ export default function Settings(props: {
                                     value={amapKey.securityKey}
                                 />
                                 <Input
-                                    className="mt-3"
                                     label={
                                         <div>
                                             <span>高德地图 Web服务 密钥</span>
@@ -105,7 +105,6 @@ export default function Settings(props: {
                                     value={amapWebKey}
                                 />
                                 <Input
-                                    className="mt-3"
                                     label={
                                         <div>
                                             <span>百度地图 js 密钥</span>
@@ -122,6 +121,11 @@ export default function Settings(props: {
                                     name="bmapKey"
                                     value={bmapKey}
                                 />
+                                <div className="pt-2 flex justify-end">
+                                    <Button color="primary" type="submit">
+                                        保存密钥
+                                    </Button>
+                                </div>
                             </form>
                         </ModalBody>
                     </>
