@@ -82,10 +82,7 @@ function genPolylineOptions(typeCode: EBuslineStrokeStyle) {
 }
 
 function Map(props: IProps) {
-    if (!props) {
-        return null;
-    }
-    const { jsKey, jsSecureKey, webApiKey } = props;
+    const { jsKey, jsSecureKey, webApiKey } = props || {};
 
     const { center, queryConfig, selectionLine, timeFilter, mapTheme, transportConfig, bikeConfig, travelMode, drivingConfig, setCenter, setSelectionLine, setAllLines } =
         useBusLineStore((state) => ({
@@ -117,7 +114,12 @@ function Map(props: IProps) {
 
     const onInteraction = useCallback(() => {
         mapRef.current?.on('rightclick', handleClickMap);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    
+    if (!props) {
+        return null;
+    }
 
     useEffect(() => {
         if (jsSecureKey) {
