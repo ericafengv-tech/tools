@@ -112,7 +112,7 @@ function Map(props: IProps) {
             const stationMarker = new BMapGL.Marker(item.point, {
                 title: item.title,
                 icon: new BMapGL.Icon(
-                    '/icons/station-icon.png',
+                    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/icons/station-icon.png`,
                     new BMapGL.Size(20, 20),
                 ),
             });
@@ -209,7 +209,7 @@ function Map(props: IProps) {
             const centerMarker = new BMapGL.Marker(centerPoint, {
                 title: '当前位置',
                 icon: new BMapGL.Icon(
-                    '/icons/center-icon.png',
+                    `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/icons/center-icon.png`,
                     new BMapGL.Size(24, 24),
                 ),
             });

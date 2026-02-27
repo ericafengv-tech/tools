@@ -205,7 +205,7 @@ function Map(props: IProps) {
                 position: item.location, //基点位置
                 zIndex: 10,
                 icon: new AMapRef.current.Icon({
-                    image: '/icons/station-icon.png',
+                    image: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/icons/station-icon.png`,
                     imageSize: new AMapRef.current.Size(24, 24),
                     // imageOffset: new AMapRef.current.Pixel(0, 0),
                     size: new AMapRef.current.Size(24, 24),
@@ -582,7 +582,7 @@ function Map(props: IProps) {
                         position: center,
                         title: '当前位置',
                         icon: new AMapRef.current.Icon({
-                            image: '/icons/center-icon.png',
+                            image: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/icons/center-icon.png`,
                             imageSize: new AMapRef.current.Size(24, 24),
                             size: new AMapRef.current.Size(24, 24),
                         }),
@@ -730,7 +730,7 @@ function Map(props: IProps) {
                         position: center,
                         title: '当前位置',
                         icon: new AMapRef.current.Icon({
-                            image: '/icons/center-icon.png',
+                            image: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/icons/center-icon.png`,
                             imageSize: new AMapRef.current.Size(24, 24),
                             size: new AMapRef.current.Size(24, 24),
                         }),
